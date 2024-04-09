@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        향상된 for문  
+    </h1>
+    <ul>
+        <li>
+            for of : 배열안의 내용을 탐색할 때 사용 []
+            for(let value값 of Array){
+                code;
+            }
+        </li>
+        <li>
+            for in : 객체안의 내용을 탐색할때 사용{}
+            for(let value값 in Object){
+                <!-- value값 = key값 -->
+                code;
+            }
+        </li>
+    </ul>
+    <h3>약수 출력(1~100까지 입력한 숫자의 약수 출력)</h3>
+    <input type="text" id="num">
+    <button type="button" onclick="rNum()">약수 출력</button>
+    <h3 id="result">
+        약수 값 출력 / 개수<br>
+    </h3>
+    <script>
+        function rNum(){
+            let num = document.getElementById('num').value;
+            let count=0;
+            let str='약수 값 출력 / 개수<br>';
+            
+            for(let i=1; i<=num; i++){
+                    if(num%i==0){
+                        str+=`${i} `;
+                        count++;
+                    }if(num<0 || num>100){
+                        alert('1~100까지의 숫자를 입력해주세요.');
+                        document.getElementById('num').value=null;
+                        return false;
+                    }
+                }
+            str += `<br>`;
+            str += `총 ${count}개`;
+
+            result.innerHTML=str;
+        };
+    </script>
+</body>
+</html>

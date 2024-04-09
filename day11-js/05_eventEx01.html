@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eventEx</title>
+</head>
+<body>
+    <!-- 
+        성적확인
+        이름 : input
+        국어 : input
+        영어 : input
+        수학 : input
+        성적 계산 버튼 생성
+        -------------------------
+        이름 : 홍길동
+        국어 : 80
+        영어 : 90
+        수학 : 80
+        합계 : 00
+        평균 : 00
+     -->
+     <style>
+        fieldset{
+            width: 25%;
+            border: 5px solid darkgray;
+            border-radius: 10px;
+        }
+        fieldset>input{
+            width: 25%;
+            margin: 5px 0;
+        }
+        button{
+            margin: 20px 0 20px 110px;
+        }
+     </style>
+     <form action="">
+        <fieldset>
+            이름 : <input type="text" id="name"><br>
+            국어 : <input type="text" id="kor"> 점<br>
+            영어 : <input type="text" id="eng"> 점<br>
+            수학 : <input type="text" id="math"> 점<br>
+            <button type="button" onclick="sub()">성적 계산</button>
+        </fieldset>
+        </form>
+
+     <ul id="ul"></ul>
+
+     <script>
+         
+         function sub(){
+             
+             let name = document.getElementById('name').value;
+             let kor = document.getElementById('kor').value;
+             let eng = document.getElementById('eng').value;
+             let math = document.getElementById('math').value;
+             
+             let sum = Number(kor)+Number(eng)+Number(math)
+             let avg = Math.round(sum / 3); //정수로 반올림
+             //  .toFixed(2) : 소수점 자리 표현
+             //  let avg = (sum / 3).toFixed(2);
+             // 두번째 소수점까지 표현하겠다는 의미
+             
+             let ul = document.getElementById('ul');
+
+             let str = `<li>이름 : ${name}</li>`;
+             str += `<li>국어 : ${kor}점</li>`;
+             str += `<li>영어 : ${eng}점</li>`;
+             str += `<li>수학 : ${math}점</li>`;
+             str += `<li>합계 : ${sum}점</li>`;
+             str += `<li>평균 : ${avg}점</li>`;
+
+             ul.innerHTML = str;
+
+             console.log('----------------------------------');
+             console.log(`이름 : ${name}`);
+             console.log(`국어 : ${kor}점`);
+             console.log(`영어 : ${eng}점`);
+             console.log(`수학 : ${math}점`);
+             console.log(`합계 : ${sum}점`);
+             console.log(`평균 : ${avg}점`);
+
+        };
+
+     </script>
+</body>
+</html>

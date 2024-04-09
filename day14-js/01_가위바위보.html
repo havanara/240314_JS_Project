@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가위바위보</title>
+</head>
+<body>
+    <h1>가위바위보를 10번하여 승률 출력</h1>
+    <button type="button" onclick="game()">승률 출력</button>
+    <h3>
+        10게임의 승률은 <span id="result"></span>% 입니다.
+    </h3>
+    <script>
+        // 가위바위보 게임
+        // com = random / player = random
+        // 1=가위, 2=바위, 3=보
+        // 승률 계산 (승 / (10게임-무승부))*100 소수점 2자리까지 표현
+        // 콘솔에 com / player 출력
+        // 콘솔에 승 : 번, 무 : 번, 패 : 번
+        function ran(){
+            return Math.floor(Math.random()*3)+1;
+        }
+
+        function game(){
+
+            let cnt = 0;
+            let win = 0;
+            let mo = 0;
+            let loser = 0;
+            
+            for(let i=1; i<=10; i++){
+                // let com = Math.floor(Math.random()*3)+1;
+                // let player = Math.floor(Math.random()*3)+1;
+
+                // 함수로 사용할 경우
+                let com = ran();
+                let player = ran();
+
+                console.log(`${com} / ${player}`);
+                cnt++;
+                if(player == com){
+                    mo++;
+                }else if(player==1&&com==2 || player==2&&com==3 || player==3&&com==1){
+                    loser++;
+                }else{
+                    win++;
+                }
+                // switch문 사용시
+                // switch(player){
+                //     // 무 패 승
+                //     case 1: (com==1)? mo++ : (com==2)? loser++ : win++;
+                //             break;
+                //     case 2: (com==2)? mo++ : (com==3)? loser++ : win++; 
+                //             break;
+                //     case 3: (com==3)? mo++ : (com==1)? loser++ : win++; 
+                //             break;
+                //     dafault : break;
+                // }
+            }
+            console.log(`승:${win}, 무:${mo}, 패:${loser}`);
+            let str = ((win/(cnt-mo))*100).toFixed(2);
+            document.getElementById('result').innerHTML = str;
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eventEx</title>
+</head>
+<body>
+    <form action="">
+        <fieldset>
+            가격 : <input type="text" id="price">원<br>
+            할인율 : <input type="text" id="sale_per">%<br>
+            <button type="button" onclick="money()">할인가격 계산</button>
+        </fieldset>
+    </form>
+    
+    <ul id="ul"></ul>
+
+    <script>
+        function money(){
+            let price = parseInt(document.getElementById('price').value);
+            let sale_per = Number(document.getElementById('sale_per').value);
+            let sale_money = price * (sale_per/100);
+            let sale_price = price - sale_money;
+
+            let ul = document.getElementById('ul');
+
+            // let str = `<li>가격 : ${price}원</li>`;
+            // str +=  `<li>할인율 : ${sale_per}%</li>`;
+            // str +=  `<li>할인금액 : ${sale_money}원</li>`;
+            // str +=  `<li>지불금액 : ${sale_price}원</li>`;
+
+            // ul.innerHTML = str;
+
+            document.getElementById('ul').innerText = `가격 : ${price}원, 할인율 : ${sale_per}%, 할인금액 : ${sale_money}원, 지불금액 : ${sale_price}원`;
+        };
+
+    </script>
+</body>
+</html>

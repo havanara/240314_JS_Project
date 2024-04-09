@@ -1,0 +1,44 @@
+/*
+상하좌우 값이 있을 경우
+magin: 10px -> 상하좌우 전체 10px
+magin: 10px 20px -> 상하(10px) 좌우(20px)를 의미
+magin: 10px 20px 30px -> 상(10px) 좌우(20px) 하(30px)를 의미
+magin: 10px 20px 30px 40px -> 상(10px) 우(20px) 하(30px) 좌(40px)를 의미(시계방향)
+*/
+
+@font-face {
+    font-family: no;
+    src: url(/day09/font/NotoSansKR-Black.ttf);
+}
+body{
+    text-align: center;
+    margin: 50px;
+    background-color: darkcyan;
+}
+h1{
+    padding: 10px;
+    background-color: black;
+    color: white;
+    width: 300px;
+    margin: 10px auto 30px;
+    font-weight: bold;
+    font-size: 50px;
+    font-family: no;
+}
+img{
+    margin-top: 30px;
+    width: 50%;
+    height: 500px;
+}
+button{
+    margin-top: 20px;
+    padding: 20px;
+    border: none;
+    background: none;
+    font-size: 20px;
+    font-family: no;
+}
+button:hover{
+    cursor: pointer;
+    color: white;
+}

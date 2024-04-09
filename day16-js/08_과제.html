@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>과제</title>
+</head>
+<body>
+    <!-- 구구단 문제 -->
+    <h1>
+        <button type="button" id="startBtn">문제 출제</button>
+    </h1>
+    <ol id="q"></ol>
+    <h1>
+        <button type="button" id="comparteBtn">정답확인</button>
+    </h1>
+    <h3 id="printRatio"></h3>
+
+    <script>
+        function random() {
+            return Math.floor(Math.random()*9)+1;
+        }
+
+        const ansObj={};
+        let str = '';
+        // 반복문을 하고 문제를 나타냄
+
+        document.getElementById('startBtn').addEventListener('click',()=>{
+            document.getElementById('q').innerHTML = null;
+            document.getElementById('printRatio').innerHTML = null;
+            for(let i=1; i<=10; i++){
+                let dan = random();
+                let incre = random();
+                ansObj[`ans${i}`] = dan * incre;
+                document.getElementById('q').innerHTML +=
+                `<li>${dan}*${incre} = <input type="text" id="user${i}"></li>`;
+            }
+            console.log(ansObj);
+        });
+        
+        document.getElementById('comparteBtn').addEventListener('click',()=>{
+            let cnt = 0;
+            for(let i=1; i<=10; i++){
+                let quiz = document.getElementById(`user${i}`);
+                if(ansObj[`ans${i}`] == quiz.value){
+                    quiz.value += `: 정답`;
+                    quiz.style.backgroundColor = 'green';
+                    cnt++;
+                }else{
+                    quiz.value += `: 오답`;
+                    quiz.style.backgroundColor = 'red';
+                }
+            }
+            let ea = (cnt/10)*100
+            document.getElementById('printRatio').innerHTML =
+            `정답 개수 : ${cnt}개 / 정답률 : ${ea}%`;
+        });
+    </script>
+</body>
+</html>

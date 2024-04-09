@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>과제</title>
+</head>
+<body>
+    <form action="">
+    이름 : <input type="text" id="name"><br>
+    주민번호 : <input type="text" id="rNum"><br>
+    <button type="button" onclick="result()">확인</button>
+    </form>
+
+    <h3 id="result"></h3>
+
+    <script>
+        function result(){
+            let today = new Date();
+
+            let name = document.getElementById('name').value;
+            let rNum = document.getElementById('rNum').value;
+
+            let birth = rNum.slice(0,rNum.indexOf('-'));
+            console.log(birth);
+
+            let gNum = rNum.charAt(rNum.indexOf('-')+1);
+            let gender = (gNum=='1'||gNum=='3')? '남성':'여성';
+            console.log(gender);
+
+            let todayYear = today.getFullYear();
+            let ageYear = (gNum=='1'||gNum=='2')?
+            Number(rNum.slice(0,2)+1900) : Number(rNum.slice(0,2)+2000);
+            let age = todayYear-ageYear;
+            console.log(age);
+
+            document.getElementById('result').innerText =
+            `이름 : ${name}, 생년월일 : ${birth}, 나이 : ${age}세, 성별 : ${gender}`; 
+        }
+    </script>
+</body>
+</html>

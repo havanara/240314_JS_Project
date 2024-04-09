@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>element</title>
+</head>
+<body>
+    <button type="button" id="eleBtn">엘리먼트 만들기</button><br>
+    <button type="button" id="selecBtn" style="display: none;">생성된 버튼</button>
+    <h1 id="result"></h1>
+    
+    <script>
+        let result = document.getElementById('result');
+        function show(){
+            const selecBtn = document.getElementById('selecBtn' );
+            selecBtn.style="display: block;"
+        }
+        document.getElementById('eleBtn').addEventListener('click',show);
+        document.getElementById('selecBtn').addEventListener('click',()=>{
+            result.innerText = `생성된 버튼 클릭`;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>updownGame</title>
+</head>
+<body>
+    <h1>up down game</h1>
+    <ul>
+        <li>
+            랜덤 숫자만들기 버튼을 클릭하면 컴퓨터가 랜덤수 1~99 숫자 1개를 생성
+        </li>
+        <li>
+            숫자가 생성되면 '컴퓨터가 랜덤으로 숫자를 생성했습니다.' 문구 출력
+        </li>
+        <li>
+            imput란에 1~99 중 숫자를 입력하고 맞추기 버튼을 클릭하면
+        </li>
+        <li>
+            컴퓨터의 숫자보다 높은 숫자면 down, 낮으면 up이라고 출력
+        </li>
+        <li>
+            숫자를 맞추면 정답입니다! ~숫자는 ?? 였습니다. 출력
+        </li>
+    </ul>
+    <button type="button" id="numRandom">랜덤 숫자 생성 버튼</button>
+    <button type="button" id="replay">다시 시도</button>
+    <h3>컴퓨터가 랜덤수(1~99)를 생성했습니다.</h3>
+    <input type="number" id="num" max="99" min="1">
+    <button type="button" id="answer">정답!</button>
+    <h3 id="result"></h3>
+
+    <script>
+        
+        function random(){
+            return Math.floor(Math.random()*99)+1;
+        }
+        
+        let cnt = 0;
+        let re;
+        let numRandom = random();
+        function game(num){
+            cnt++;
+            if(num>1 && num<100){
+                if(num==numRandom){
+                    re = `시도횟수 ${cnt}회<br>정답! 숫자는 ${num}입니다!`;
+                }else if(num>numRandom){
+                    re = `시도횟수 ${cnt}회<br>down!`;
+                }else{
+                    re = `시도횟수 ${cnt}회<br>up!`;
+                }
+            }else{
+                re = `1~99까지의 숫자만 입력가능합니다.`;
+            }
+        }
+
+        function reset(num){
+            document.getElementById('num').value = null;
+            cnt = 0;
+            re = null;
+        }
+
+        document.getElementById('numRandom').addEventListener('click',()=>{
+            alert('컴퓨터가 랜덤으로 숫자를 생성했습니다.');
+            numRandom = random();
+        });
+        document.getElementById('replay').addEventListener('click',()=>{
+            let num = document.getElementById('num').value;
+            reset(num);
+        });
+        document.getElementById('answer').addEventListener('click',()=>{
+            let num = document.getElementById('num').value;
+            game(num);
+            document.getElementById('result').innerHTML = re;
+        });
+    </script>
+</body>
+</html>

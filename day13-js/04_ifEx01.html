@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ifEx</title>
+</head>
+<body>
+    <h1>오늘은 ?</h1> 
+    <button type="button" onclick="today_event()">Today</button>
+    <h3 id="result"></h3>
+    <!-- 오늘 날짜와 요일 출력 -->
+    <!-- 2024. 03. 19(화) -->
+
+    <script>
+        function today_event(){
+            let today = new Date();
+            let today2 = today.toLocaleDateString(); //2024. 3. 19.
+            let day = today.getDay(); //요일번호 0~6(일~토)
+            let date;
+
+            switch(day){
+                case 0 : date = '(일)'; break;
+                case 1 : date = '(월)'; break;
+                case 2 : date = '(화)'; break;
+                case 3 : date = '(수)'; break;
+                case 4 : date = '(목)'; break;
+                case 5 : date = '(금)'; break;
+                case 6 : date = '(토)'; break;
+                default : console.log('잘못된 값입니다.');
+            }
+
+            document.getElementById('result').innerText =
+            `${today2} ${date}`;
+        };
+    </script>
+</body>
+</html>

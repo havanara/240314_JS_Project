@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>itemList</title>
+</head>
+<style>
+    @font-face {
+        font-family: no;
+        src: url(/day09/font/NotoSansKR-ExtraBold.ttf);
+    }
+    #wapper{
+        width: 600px;
+        margin: 10px auto;
+    }
+    h2, input, button{
+        font-family: no;
+    }
+    h2{
+        padding: 30px 0;
+        text-align: center;
+        font-size: 35px;
+    }
+    #ib{
+        border: 1px solid red;
+        display: flex;
+        justify-content: center;
+        background-color: deeppink;
+        height: 100px;
+        line-height: 100px;
+    }
+    input{
+        width: 280px;
+        border-radius: 10px;
+        outline: none;
+        border: none;
+        font-size: large;
+        padding: 8px;
+    }
+    button{
+        width: 50px;
+        height: 50px;
+        background-color: hotpink;
+        color: black; 
+        margin: 0 10px;
+        border-radius: 30px;
+        border: none;       
+        font-size: 16px; 
+    }
+    button:hover{
+        background-color: black;
+        color: white;    
+        cursor: pointer;  
+    }
+    #wap{
+        background-color: pink;
+    }
+    ul{
+        margin: 0;
+    }
+    ul> li{
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        height: 50px;
+        line-height: 50px;
+        font-family: no;
+        font-size: large;
+        position: relative;
+    }
+    span:hover{
+        cursor: pointer;
+        color: red;
+    }
+    .close{
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 2px 20px;
+    }
+</style>
+<body>
+    <div id="wapper">
+        <h2>여행 준비물 점검 목록</h2>
+        <div id="ib">
+            <form action="">
+                <!-- autofocus="true" : 내가 클릭을 안해도 커서가 살아있음 -->
+                <input type="text" id="item" autofocus="true">
+                <button type="button" class="a b c list" id="addBtn">추가</button>
+            </form>
+        </div>
+            <div id="wap">
+                <!-- 버튼 누르면 여기서 추가 -->
+                <ul id="itemList"></ul>
+            </div>
+        </div>
+    <script>
+        // 추가하는 목록을 저장, 삭제한 목록을 제거
+        let itemList = [];
+
+        // 아이템 추가 : 입력받은 아이템을 배열에 추가
+        function addList(){
+            let item = document.getElementById('item');
+            console.log(item.value);
+            if(item.value!==''){
+                itemList.push(item.value);
+
+                // 추가 후 입력값을 비우기
+                // 그래야 다음에 입력할때 지우고 쓰지않아도 됨
+                item.value = '';
+
+                // 입력란에 focus를 두어 커서 남기기
+                item.focus();
+                console.log(itemList);
+
+                // 추가 후 화면에 뿌리기
+                showList();
+            }else{
+                alert('입력값이 없습니다.')
+            }
+        }
+        // 입력값 추가 후 화면에 뿌리기(new function)
+        // 입력값을 화면에 뿌리기 : 배열에 있는 목록을 화면에 모두 뿌리기
+        function showList(){
+            let list = ''; // 뿌릴 텍스트 리스트
+            for(let i=0; i<itemList.length; i++){
+                list += `<li id="list${i}">${itemList[i]}<span class="close" id="${i}">×</span></li>`;
+            }
+            document.getElementById('itemList').innerHTML=list;
+        }
+
+        // item 삭제 : 배열에서 해당 아이템 제거
+        document.addEventListener('click',(e)=>{
+            console.log(e.target.classList);
+            if(e.target.classList.contains('close')){
+                // x 버튼을 클릭했다는 의미
+                console.log('111');
+                let i = e.target.id;
+                console.log(i);
+                // itemList배열 i위치에서 1개만 삭제
+                itemList.splice(i,1);
+            }
+            // 삭제 후 다시 리스트 뿌리기
+            showList();
+        });
+
+        // addBtn을 클릭했을 때 다른일은 하지않고 function addList()만 실행할 때
+        document.getElementById('addBtn').addEventListener('click', addList);
+        </script>
+</body>
+</html>

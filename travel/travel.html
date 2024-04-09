@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Travel</h1>
+    <ul>
+        <button type="button" id="h">Home</button>
+        <button type="button" id="s">Seoul</button>
+        <button type="button" id="t">Tokyo</button>
+        <button type="button" id="p">Paris</button>
+    </ul>
+    <img src="/image/home.jpg" alt="사진없음" id="img">
+
+    <script>
+        const imgTag = document.getElementById('img');
+        document.getElementById('h').addEventListener('click',()=>{
+            imgTag.src="/image/home.jpg";
+        });
+        document.getElementById('s').addEventListener('click',()=>{
+            imgTag.src="/image/seoul.jpg";
+        });
+        document.getElementById('t').addEventListener('click',()=>{
+            imgTag.src="/image/tokyo.jpg";
+        });
+        document.getElementById('p').addEventListener('click',()=>{
+            imgTag.src="/image/paris.jpg";
+        });
+    </script>
+</body>
+</html>
